@@ -23,12 +23,6 @@ def histo(titre, df, b, rw, r, fig, column):
     st.pyplot()
 
 
-
-def histo(titre, df, b, rw, r, fig, column):
-    st.title(titre)
-    df[[column]].plot.hist(bins=b, rwidth= rw,range=r, figsize=fig,title= titre)
-    st.pyplot()
-
 def lancement():
 
     x = st.sidebar.selectbox(
@@ -75,7 +69,7 @@ def lancement():
     st.write('Manowaraly_Hatim_LAB3')
 
 def get_dom(dt):
-        return dt.day
+    return dt.day
     
 def get_weekday(dt):
     return dt.weekday()
