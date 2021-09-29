@@ -2,6 +2,26 @@ import streamlit as st
 import numpy as np
 import pandas as pd 
 import time
+from functools import wraps
+from time import time
+
+
+def timing(f):
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        start = time()
+        result = f(*args, **kwargs)
+        end = time()
+        print ('Temps écoulé : {}'.format((end-start)*1000) + " ms")
+        return result
+    return wrapper
+
+@timing
+def histo(titre, df, b, rw, r, fig, column):
+    st.title(titre)
+    df[[column]].plot.hist(bins=b, rwidth= rw,range=r, figsize=fig,title= titre)
+    st.pyplot()
+
 
 
 def histo(titre, df, b, rw, r, fig, column):
