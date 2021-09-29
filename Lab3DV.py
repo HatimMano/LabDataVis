@@ -34,16 +34,17 @@ def lancement():
         st.title('Données Uber')
         st.write('Trajets Uber quotidiens')
         df = pd.read_csv('uber-raw-data-apr14.csv', delimiter=',')
-
-        agree = st.checkbox("Inspecter quelques valeurs des données")
-        if agree:
-            st.write(df.head())
-
         df['Date/Time'] = pd.to_datetime(df['Date/Time'])
         df['Date/Time'].apply(get_dom)
         df['day'] = df['Date/Time'].map(get_dom)
         df['hour'] = df['Date/Time'].map(get_hour)
         df['weekday']=df['Date/Time'].map(get_weekday)
+
+        agree = st.checkbox("Inspecter quelques valeurs des données")
+        if agree:
+            st.write(df.head())
+
+        
         
         histo("Fréquence de course par heure sur une semaine", df,  30, 0.8, (0.5,23.5),(30,15), "hour")
         histo("Fréquence par heure", df, 24, 0.8, (-0.5,23.5), None, "weekday")  
