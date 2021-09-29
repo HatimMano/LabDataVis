@@ -2,29 +2,13 @@ import streamlit as st
 import numpy as np
 import pandas as pd 
 import time
-from functools import wraps
-from time import time
 
 
-def timing(f):
-    @wraps(f)
-    def wrapper(*args, **kwargs):
-        start = time()
-        result = f(*args, **kwargs)
-        end = time()
-        print ('Temps écoulé : {}'.format((end-start)*1000) + " ms")
-        return result
-    return wrapper
-
-@timing
 def histo(titre, df, b, rw, r, fig, column):
     st.title(titre)
     df[[column]].plot.hist(bins=b, rwidth= rw,range=r, figsize=fig,title= titre)
     st.pyplot()
 
-
-@timing
-#@st.cache(suppress_st_warning=True)
 def lancement():
 
     x = st.sidebar.selectbox(
@@ -64,7 +48,8 @@ def lancement():
         
         histo("Fréquence de course par heure en Avril 2014", dff, 24, 0.8, (-0.5,23.5), None, "hour")
 
-        histo('Trajets par heure', dff, 24, 0.9, (-0.5,23.5), None,"hour")   
+        histo('Trajets par heure', dff, 24, 0.9, (-0.5,23.5), None,"hour")
+       
         
 
     st.write('Manowaraly_Hatim_LAB3')
