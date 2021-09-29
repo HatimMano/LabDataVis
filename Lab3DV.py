@@ -26,7 +26,7 @@ def histo(titre, df, b, rw, r, fig, column):
 
 
 @timing
-@st.cache(suppress_st_warning=True)
+#@st.cache(suppress_st_warning=True)
 def lancement():
 
     x = st.sidebar.selectbox(
