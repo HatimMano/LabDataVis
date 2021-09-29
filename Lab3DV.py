@@ -2,7 +2,6 @@ import streamlit as st
 import numpy as np
 import pandas as pd 
 import time
-import matplotlib.pyplot as plt 
 import seaborn as sns
 from functools import wraps
 from time import time
